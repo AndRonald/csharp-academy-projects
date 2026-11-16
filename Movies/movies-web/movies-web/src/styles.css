@@ -1,0 +1,13 @@
+.navbar-glass {
+  background-color: rgba(20, 22, 28, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  background-color: #9d8cff;
+  color: #0b0c10;
+}

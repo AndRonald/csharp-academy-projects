@@ -1,11 +1,15 @@
-function App() {
+import Navbar from './components/Navbar';
+import MovieList from './pages/MovieList';
 
+function App() {
   return (
-  <div className="container py-5">
-    <h1>MovieBox 🎬</h1>
-    <button className="btn btn-warning">Funcionou!</button>
-  </div>
-  )
+    <>
+      <Navbar />
+      <main className="container py-4">
+        <MovieList />
+      </main>
+    </>
+  );
 }
 
-export default App
+export default App;
