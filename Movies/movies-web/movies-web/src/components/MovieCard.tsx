@@ -7,12 +7,12 @@ interface Props {
 
 export default function MovieCard({ movie }: Props) {
     return (
-        <div className="card h-100 border 0 rounded-4 overflow-hidden shadow-sm">
+        <div className="card h-100 border-0 rounded-4 overflow-hidden shadow-sm"> {/* ✏️ border 0 → border-0 */}
             <div
-                className="bg-secondary-subtle d-flex allign-items-center justify-content-center position-relative"
+                className="bg-secondary-subtle d-flex align-items-center justify-content-center position-relative" /* ✏️ allign → align */
                 style={{ aspectRatio: '2 / 3' }}
             >
-                <span className="display-4 fw-bold text-body-sencondary">
+                <span className="display-4 fw-bold text-body-secondary"> {/* ✏️ sencondary → secondary */}
                     {movie.title?.charAt(0) ?? '?'}
                 </span>
                 <span className="badge text-bg-dark position-absolute top-0 end-0 m-2">
@@ -26,4 +26,4 @@ export default function MovieCard({ movie }: Props) {
             </div>
         </div>
     );
-} 
+}

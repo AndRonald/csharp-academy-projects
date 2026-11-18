@@ -15,7 +15,7 @@ export async function getMovies(): Promise<Movie[]> {
     return handle<Movie[]>(response);
 }
 
-export async function getMoviesById(id: string): Promise<Movie> {
+export async function getMovieById(id: string): Promise<Movie> { // ✏️ getMoviesById → getMovieById
     const response = await fetch(`${BASE_URL}/${id}`);
     return handle<Movie>(response);
 }
