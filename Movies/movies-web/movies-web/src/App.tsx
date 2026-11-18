@@ -1,12 +1,15 @@
 import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router'
 import MovieList from './pages/MovieList';
 
 function App() {
   return (
     <>
       <Navbar />
-      <main className="container py-4">
-        <MovieList />
+      <main>
+        <Routes>
+          <Route path="/" element={<MovieList/>} />
+        </Routes>
       </main>
     </>
   );
