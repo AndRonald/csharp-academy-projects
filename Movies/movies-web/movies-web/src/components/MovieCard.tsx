@@ -1,29 +1,25 @@
+import { NavLink } from 'react-router';
 import type { Movie } from '../types/Movie';
-import { getYear, formatPrice } from '../utils/format';
+import styles from './MovieCard.module.css';
+import { formatPrice, getYear } from '../utils/format';
 
 interface Props {
-    movie: Movie;
+  movie: Movie;
 }
 
 export default function MovieCard({ movie }: Props) {
-    return (
-        <div className="card h-100 border-0 rounded-4 overflow-hidden shadow-sm"> {/* ✏️ border 0 → border-0 */}
-            <div
-                className="bg-secondary-subtle d-flex align-items-center justify-content-center position-relative" /* ✏️ allign → align */
-                style={{ aspectRatio: '2 / 3' }}
-            >
-                <span className="display-4 fw-bold text-body-secondary"> {/* ✏️ sencondary → secondary */}
-                    {movie.title?.charAt(0) ?? '?'}
-                </span>
-                <span className="badge text-bg-dark position-absolute top-0 end-0 m-2">
-                    {getYear(movie.releaseDate)}
-                </span>
-            </div>
-            <div className="card-body">
-                <h5 className="card-title fs-6 fw-bold mb-1">{movie.title ?? 'Sem título'}</h5>
-                <p className="card-text small text-body-secondary mb-2">{movie.genre}</p>
-                <span className="fw-semibold text-warning">{formatPrice(movie.price)}</span>
-            </div>
+  return (
+    <NavLink to={`/movies/${movie.id}`} className={styles.card}>
+      <div className={styles.poster}>{movie.title?.charAt(0) ?? '?'}</div>
+      <div className={styles.info}>
+        <div className={styles.titleRow}>
+          <span className={styles.title}>{movie.title ?? 'Sem título'}</span>
+          <span className={styles.price}>{formatPrice(movie.price)}</span>
         </div>
-    );
+        <span className={styles.meta}>
+          {movie.genre}, {getYear(movie.releaseDate)}
+        </span>
+      </div>
+    </NavLink>
+  );
 }

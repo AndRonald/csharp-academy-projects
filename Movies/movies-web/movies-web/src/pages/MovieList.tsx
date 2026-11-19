@@ -2,68 +2,63 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Movie } from '../types/Movie';
 import { getMovies } from '../services/movieService';
 import MovieCard from '../components/MovieCard';
+import styles from './MovieList.module.css';
 
 export default function MovieList() {
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [genre, setGenre] = useState('Todos');
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [genre, setGenre] = useState('Todos');
 
-    useEffect(() => {
-        getMovies()
-            .then(setMovies)
-            .catch((err: Error) => setError(err.message))
-            .finally(() => setLoading(false));
-    }, [])
+  useEffect(() => {
+    getMovies()
+      .then(setMovies)
+      .catch((err: Error) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
-    const genres = useMemo(
-        () => ['Todos', ...new Set(movies.map((m) => m.genre))],
-        [movies]
-    )
+  const genres = useMemo(() => ['Todos', ...new Set(movies.map((m) => m.genre))], [movies]);
 
-    const filtered = genre === 'Todos' ? movies : movies.filter((m) => m.genre === genre);
+  const filtered = genre === 'Todos' ? movies : movies.filter((m) => m.genre === genre);
 
-    if (loading) {
-        return (
-            <div className="text-center py-5">
-                <div className="spinner-border text-warning" role="status"/>
-            </div>
-        );
-    }
+  if (loading) {
+    return <section className={styles.page}>Carregando filmes...</section>;
+  }
 
-    if (error) {
-        return <div className="alert alert-danger">Não foi possível carregar os filmes. {error}</div>;
-    }
+  if (error) {
+    return <section className={styles.page}>Não foi possível carregar os filmes. {error}</section>;
+  }
 
-    return (
-    <>
-      <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-        <h1 className="h3 fw-bold m-0">Filmes</h1>
-        <div className="btn-group" role="group" aria-label="Filtrar por gênero">
+  return (
+    <section className={styles.page}>
+      <header className={styles.header}>
+        <h1 className={styles.heading}>Catálogo</h1>
+        <div className={styles.tabs} role="group" aria-label="Filtrar por gênero">
           {genres.map((g) => (
             <button
               key={g}
               type="button"
-              className={`btn btn-sm ${g === genre ? 'btn-warning' : 'btn-outline-secondary'}`}
+              className={g === genre ? `${styles.tab} ${styles.active}` : styles.tab}
               onClick={() => setGenre(g)}
             >
-              {g}
+              {g}{' '}
+              <sup className={styles.count}>
+                {g === 'Todos' ? movies.length : movies.filter((m) => m.genre === g).length}
+              </sup>
             </button>
           ))}
         </div>
-      </div>
+      </header>
 
       {filtered.length === 0 ? (
-        <p className="text-body-secondary">Nenhum filme encontrado.</p>
+        <p className={styles.empty}>Nenhum filme encontrado.</p>
       ) : (
-        <div className="row row-cols-2 row-cols-md-4 row-cols-xl-6 g-4">
+        <div className={styles.grid}>
           {filtered.map((movie) => (
-            <div className="col" key={movie.id}>
-              <MovieCard movie={movie} />
-            </div>
+            <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
       )}
-    </>
+    </section>
   );
 }
