@@ -1,0 +1,61 @@
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.tab {
+  background: none;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--color-muted);
+  min-height: 44px;
+}
+
+.active {
+  color: var(--color-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
+}
+
+.empty {
+  color: var(--color-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--space-7) var(--space-5);
+}
+
+.count {
+  font-size: 11px;
+  margin-left: 2px;
+}

@@ -1,0 +1,75 @@
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-6) var(--space-8);
+}
+
+.backdrop {
+  aspect-ratio: 21 / 9;
+  background: var(--color-border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-5) var(--space-7);
+  padding-top: var(--space-6);
+}
+
+.kicker {
+  display: block;
+  font-size: 15px;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  margin: 0;
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  font-size: clamp(56px, 10vw, 104px);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 360px;
+}
+
+.description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.button {
+  background: var(--color-text);
+  color: var(--color-bg);
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 var(--space-5);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
